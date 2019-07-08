@@ -4,9 +4,26 @@ This doc covers implementation details of the recipe engine and its processes.
 Read this if you want to understand/modify how the recipes as a system work. For
 general recipe developement, please see [user_guide.md](./user_guide.md).
 
-[TOC]
+Table of Contents
+=================
 
-
+   * [Recipe engine implementation details](#recipe-engine-implementation-details)
+      * [Recipe engine subcommands](#recipe-engine-subcommands)
+      * [Loading](#loading)
+         * [Repo configuration](#repo-configuration)
+         * [Repo loading](#repo-loading)
+         * [Proto compilation](#proto-compilation)
+         * [Recipe Module loading](#recipe-module-loading)
+         * [Recipe loading](#recipe-loading)
+         * [Instantiating '<strong>api</strong>' objects](#instantiating-api-objects)
+      * [Simulation tests](#simulation-tests)
+         * [Post-process hooks](#post-process-hooks)
+      * [How recipes are run](#how-recipes-are-run)
+         * [StreamEngine](#streamengine)
+         * [StepRunner](#steprunner)
+         * [Running steps](#running-steps)
+            * [Drawbacks of current presentation/exception handling implementation.](#drawbacks-of-current-presentationexception-handling-implementation)
+            
 ## Recipe engine subcommands
 
 All recipe engine subcommands live in the [commands] folder. The `__init__.py`
